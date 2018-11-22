@@ -17,12 +17,11 @@ public class Loader {
 
         try (Socket client = new Socket("127.0.0.1", 33801)) {
 
-            boolean aux = false;
+            Integer aux;
 
-            while (aux == false) {
-//                List<Integer> numbers = Arrays.asList(random.nextInt(101), random.nextInt(101));
+            do {
+                List<Integer> numbers = Arrays.asList(random.nextInt(101), random.nextInt(101));
 
-                List<Integer> numbers = Arrays.asList(1, 2);
                 System.out.println("Valores gerados: ");
                 numbers.forEach(System.out::println);
 
@@ -31,8 +30,12 @@ public class Loader {
 
 
                 ObjectInputStream inputStream = new ObjectInputStream(client.getInputStream());
-                aux = inputStream.readBoolean();
-            }
+                aux = inputStream.readInt();
+
+                if (aux == 0)
+                    System.out.println("Os números eram iguais");
+
+            } while (aux == 0);
 
         } catch (IOException e) {
             e.printStackTrace();

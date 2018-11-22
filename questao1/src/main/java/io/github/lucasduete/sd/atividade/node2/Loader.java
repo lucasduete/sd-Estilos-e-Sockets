@@ -27,7 +27,7 @@ public class Loader {
 
                 if (accept != null) {
                     outputStream = new ObjectOutputStream(accept.getOutputStream());
-                    outputStream.writeBoolean(false);
+                    outputStream.writeInt(0);
                     outputStream.flush();
                 }
 
@@ -42,7 +42,7 @@ public class Loader {
             }
 
             outputStream = new ObjectOutputStream(accept.getOutputStream());
-            outputStream.writeBoolean(true);
+            outputStream.writeInt(1);
             outputStream.flush();
 
         } catch (ClassNotFoundException | IOException ex) {
