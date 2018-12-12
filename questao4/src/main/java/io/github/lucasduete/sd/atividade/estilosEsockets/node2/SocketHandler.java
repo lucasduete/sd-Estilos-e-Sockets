@@ -7,6 +7,7 @@ import io.github.lucasduete.sd.atividade.estilosEsockets.node2.model.User;
 import java.io.ObjectInputStream;
 import java.net.Socket;
 
+
 public class SocketHandler extends Thread {
 
     private final Socket socket;

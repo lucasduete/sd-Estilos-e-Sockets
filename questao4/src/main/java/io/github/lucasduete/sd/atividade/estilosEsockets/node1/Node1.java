@@ -1,4 +1,4 @@
-package io.github.lucasduete.sd.atividade.estilosEsockets;
+package io.github.lucasduete.sd.atividade.estilosEsockets.node1;
 
 import io.github.lucasduete.sd.atividade.estilosEsockets.node2.model.User;
 
@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Random;
 import java.util.concurrent.atomic.AtomicInteger;
 
-public class node1 {
+public class Node1 {
 
     public static void main(String[] args) throws Exception {
 
@@ -17,7 +17,7 @@ public class node1 {
         AtomicInteger counter = new AtomicInteger(0);
         List<String> nomes = Arrays.asList("Lucas", "Vanda", "May", "Alexa", "Michelle", "Kaiq");
 
-        for (int i = 0; i < 100; i++) {
+        for (int i = 0; i < 1000; i++) {
             int aux = random.nextInt(5);
             Socket socket = new Socket("localhost", 33802);
             ObjectOutputStream outputStream = new ObjectOutputStream(socket.getOutputStream());

@@ -1,10 +1,8 @@
 package io.github.lucasduete.sd.atividade.estilosEsockets.node2;
 
 import java.net.ServerSocket;
-import java.time.Instant;
-import java.time.temporal.ChronoField;
 
-public class node2 {
+public class Node2 {
 
 
     public static void main(String[] args) throws Exception {
@@ -16,12 +14,12 @@ public class node2 {
         long finalInstant =  0;
         int i = 0;
 
-        for (; i < 100; i++) {
+        for (; i < 1000; i++) {
             System.out.println("Esperando");
             SocketHandler socketHander = new SocketHandler(server.accept());
 
             if (i == 0) initialInstant =  System.currentTimeMillis();
-            else if (i == 99) finalInstant = System.currentTimeMillis();
+            else if (i == 999) finalInstant = System.currentTimeMillis();
 
             System.out.println("Nova requisiçao chegou");
             socketHander.start();
