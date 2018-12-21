@@ -54,4 +54,31 @@ public class User implements Serializable {
                 ", name='" + name + '\'' +
                 '}';
     }
+
+    @Override
+    public User clone() {
+        return new User(this.code, this.name);
+    }
+
+    public static class Proxy implements Serializable {
+
+        private User user;
+
+        public Proxy() {
+
+        }
+
+        public Proxy(User user) {
+            this.user = user;
+        }
+
+        public User getUser() {
+            return user;
+        }
+
+        public void setUser(User user) {
+            this.user = user;
+        }
+    }
+
 }
