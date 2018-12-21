@@ -10,10 +10,13 @@ import java.util.Map;
 
 public class Loader {
 
+    private static Integer serverPort;
+
     public static void main(String[] args) {
 
         try (ServerSocket server = new ServerSocket(33801)) {
             System.out.println("Iniciou NodeA em 33801");
+            serverPort = 33801;
 
             exec(server);
 
@@ -21,6 +24,7 @@ public class Loader {
 
             try (ServerSocket server = new ServerSocket(33802)) {
                 System.out.println("Iniciou NodeA em 33802");
+                serverPort = 33802;
 
                 exec(server);
 
@@ -34,7 +38,7 @@ public class Loader {
 
     }
 
-    public static void exec(ServerSocket server) throws IOException, ClassNotFoundException {
+    private static void exec(ServerSocket server) throws IOException, ClassNotFoundException {
 
         Socket request = server.accept();
         ObjectInputStream inputStreamServer = new ObjectInputStream(request.getInputStream());
@@ -47,14 +51,11 @@ public class Loader {
         ObjectOutputStream outputStreamServer = new ObjectOutputStream(request.getOutputStream());
 
         if (op == 1) {
-
-
             Integer x = data.get("x");
             Integer y = data.get("y");
 
             result = 2 * y * x;
-        } else {
-
+        } else if (serverPort == 33801) {
             Socket client = new Socket("127.0.0.1", 33803);
 
             ObjectOutputStream outputStreamClient = new ObjectOutputStream(client.getOutputStream());
@@ -66,6 +67,7 @@ public class Loader {
             inputStreamClient.close();
             outputStreamClient.close();
             client.close();
+
         }
 
         outputStreamServer.writeInt(result);
